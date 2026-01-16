@@ -1,0 +1,70 @@
+name: 🔨 Manual APK Build
+
+on:
+  workflow_dispatch:  # ТОЛЬКО ручной запуск
+
+jobs:
+  build-apk:
+    runs-on: ubuntu-latest
+    
+    steps:
+    # 1. Забираем код
+    - name: 📥 Получить код
+      uses: actions/checkout@v4
+    
+    # 2. Устанавливаем JDK 17
+    - name: ⚙️ Установить Java
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+    
+    # 3. Создаем дебаг ключ
+    - name: 🔑 Создать ключ подписи
+      run: |
+        keytool -genkey -v \
+          -keystore debug.keystore \
+          -alias androiddebugkey \
+          -keyalg RSA \
+          -keysize 2048 \
+          -validity 10000 \
+          -storepass android \
+          -keypass android \
+          -dname "CN=Android Debug, O=Android, C=US"
+    
+    # 4. Даем права скрипту
+    - name: 🔧 Настроить Gradle
+      run: |
+        chmod +x gradlew
+        echo "sdk.dir=$ANDROID_HOME" > local.properties
+        echo "org.gradle.jvmargs=-Xmx4g" > gradle.properties
+    
+    # 5. Собираем APK
+    - name: 🔨 Собрать APK
+      run: |
+        ./gradlew clean
+        ./gradlew assembleDebug --stacktrace
+        echo "✅ Сборка завершена!"
+    
+    # 6. Информация о APK
+    - name: 📊 Информация о APK
+      run: |
+        echo "=== ИНФОРМАЦИЯ О APK ==="
+        echo "Размер: $(du -h app/build/outputs/apk/debug/app-debug.apk | cut -f1)"
+        echo ""
+        echo "Детали:"
+        aapt dump badging app/build/outputs/apk/debug/app-debug.apk | grep -E "package:|version|launchable-activity:"
+    
+    # 7. Загружаем APK
+    - name: 📤 Загрузить APK
+      uses: actions/upload-artifact@v4
+      with:
+        name: DanilkaAI-APK
+        path: app/build/outputs/apk/debug/app-debug.apk
+        retention-days: 90
+    
+    # 8. Создаем прямую ссылку
+    - name: 🔗 Создать прямую ссылку
+      run: |
+        echo "📎 Прямая ссылка на APK:"
+        echo "https://nightly.link/${{ github.repository }}/workflows/manual_build/${{ github.run_id }}/DanilkaAI-APK.zip"
