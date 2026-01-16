@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background_dark"
+    android:padding="16dp">
+    
+    <!-- Заголовок -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="⎔ DANILKA AI ULTIMATE ⎔"
+        android:textColor="@color/neon_cyan"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:letterSpacing="0.1"
+        android:layout_marginBottom="20dp" />
+    
+    <!-- Статус -->
+    <TextView
+        android:id="@+id/status_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="⚡ СИСТЕМА ГОТОВА"
+        android:textColor="@color/neon_green"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:padding="12dp"
+        android:background="@drawable/card_cyber"
+        android:layout_marginBottom="20dp" />
+    
+    <!-- Анимация сканирования -->
+    <TextView
+        android:id="@+id/scan_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="🔍 СКАНИРУЮ..."
+        android:textColor="@color/neon_purple"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:layout_marginBottom="20dp" />
+    
+    <!-- Прогресс -->
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminateTint="@color/neon_cyan"
+        android:visibility="gone"
+        android:layout_marginBottom="20dp" />
+    
+    <!-- URL ввод -->
+    <EditText
+        android:id="@+id/url_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="🌐 ВСТАВЬТЕ ССЫЛКУ НА GGUF"
+        android:textColor="@color/text_white"
+        android:textColorHint="@color/text_gray"
+        android:background="@drawable/input_cyber"
+        android:padding="15dp"
+        android:layout_marginBottom="15dp" />
+    
+    <!-- Основные кнопки -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="15dp">
+        
+        <Button
+            android:id="@+id/btn_local"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_weight="1"
+            android:text="📁 ФАЙЛ"
+            android:textColor="@color/text_black"
+            android:textStyle="bold"
+            android:background="@drawable/btn_cyber_blue"
+            android:layout_marginEnd="5dp" />
+            
+        <Button
+            android:id="@+id/btn_download"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_weight="1"
+            android:text="⬇️ СКАЧАТЬ"
+            android:textColor="@color/text_black"
+            android:textStyle="bold"
+            android:background="@drawable/btn_cyber_green"
+            android:layout_marginStart="5dp" />
+    </LinearLayout>
+    
+    <!-- Браузер -->
+    <Button
+        android:id="@+id/btn_browser"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:text="🌐 HUGGING FACE"
+        android:textColor="@color/text_black"
+        android:textStyle="bold"
+        android:background="@drawable/btn_cyber_purple"
+        android:layout_marginBottom="20dp" />
+    
+    <!-- Список моделей -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="📦 НАЙДЕННЫЕ МОДЕЛИ:"
+        android:textColor="@color/neon_yellow"
+        android:textSize="16sp"
+        android:layout_marginBottom="10dp" />
+    
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginBottom="15dp">
+        
+        <LinearLayout
+            android:id="@+id/model_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="5dp" />
+    </ScrollView>
+    
+    <!-- Главная кнопка -->
+    <Button
+        android:id="@+id/btn_start"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:text="🚀 ЗАПУСТИТЬ DANILKA AI"
+        android:textColor="@color/text_black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:background="@drawable/btn_main_inactive"
+        android:enabled="false" />
+    
+</LinearLayout>
