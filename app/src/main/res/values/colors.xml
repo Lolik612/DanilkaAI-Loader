@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background_dark">#0a0a0a</color>
+    <color name="text_white">#ffffff</color>
+    <color name="text_black">#000000</color>
+    <color name="text_gray">#666666</color>
+    
+    <!-- Неоновые цвета -->
+    <color name="neon_cyan">#00ffea</color>
+    <color name="neon_green">#00ff88</color>
+    <color name="neon_purple">#ff00ff</color>
+    <color name="neon_yellow">#ffff00</color>
+    <color name="neon_red">#ff0055</color>
+    <color name="neon_blue">#0088ff</color>
+</resources>
